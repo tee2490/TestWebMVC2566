@@ -13,7 +13,7 @@ namespace WebMVC.Controllers
                new Product() {Id=2,Name="Coffee2",Price=200,Amount=20},
             };
 
-            return View(product);
+            return View(new {product,Title="Coffee Shop" } );
         }
     }
 }
