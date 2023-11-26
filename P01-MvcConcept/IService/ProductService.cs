@@ -33,5 +33,10 @@ namespace P01_MvcConcept.IService
         {
             return ProductList;
         }
+
+        public Product SearchProduct(int id)
+        {
+          return  ProductList.Find(x => x.Id == id);
+        }
     }
 }

@@ -1,10 +1,16 @@
 global using P01_MvcConcept.Models;
+using P01_MvcConcept.IService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. ลงทะเบียน
 builder.Services.AddControllersWithViews();
 
+//Dependency injection
+builder.Services.AddSingleton<IProductService,ProductService>();
+
+
+//Middle ware ยาม
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
