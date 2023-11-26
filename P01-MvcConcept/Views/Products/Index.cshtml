@@ -20,7 +20,7 @@
             <td>@product.Price</td>
             <td>@product.Amount</td>
             <td>
-                <a class="btn btn-outline-danger" href="/Products/Delete/@product.Id">Delete</a>
+                <a class="btn btn-outline-danger" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
                 <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@product.Id"
                        onclick="return confirm('ยืนยันการลบ!')">Delete</a>
             </td>
