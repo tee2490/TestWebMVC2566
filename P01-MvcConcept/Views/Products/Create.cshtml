@@ -4,21 +4,26 @@
 
 <div class="container col-md-6">
     <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3">
-            <label class="form-label">ID</label>
+            <label asp-for="Id" class="form-label"></label>
             <input asp-for="Id" type="number" class="form-control">
+            <span asp-validation-for="Id" class="text-danger"/>
         </div>
         <div class="mb-3">
-            <label class="form-label">Name</label>
+            <label asp-for="Name" class="form-label"></label>
             <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"/>
         </div>
         <div class="mb-3">
-            <label class="form-label">Price</label>
+            <label asp-for="Price" class="form-label"></label>
             <input asp-for="Price" type="number" class="form-control">
+            <span asp-validation-for="Price" class="text-danger" />
         </div>
         <div class="mb-3">
-            <label class="form-label">Amount</label>
+            <label asp-for="Amount" class="form-label"></label>
             <input asp-for="Amount" type="number" class="form-control">
+            <span asp-validation-for="Amount" class="text-danger" />
         </div>
 
         <div class="d-flex justify-content-between w-50">
@@ -28,4 +33,8 @@
     </form>
 </div>
 
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
