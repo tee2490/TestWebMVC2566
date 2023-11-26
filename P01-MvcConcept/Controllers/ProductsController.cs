@@ -37,6 +37,13 @@ namespace P01_MvcConcept.Controllers
            return RedirectToAction("Index");
         }
 
+        public IActionResult Delete(int id) 
+        { 
+            ps.DeleteProduct(id);
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
