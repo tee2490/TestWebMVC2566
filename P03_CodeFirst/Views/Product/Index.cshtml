@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Product>
+
+
+<div>
+    <a class="btn btn-success">Create</a>
+    @if (TempData["OK"] != null )
+    {
+        <div class="alert alert-danger m-4" role="alert">
+            ไม่พบข้อมูล
+        </div>
+    }
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(m=>m.Id)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.Price)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.Amount)</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var p in Model)
+            {
+            <tr>
+                <th scope="row">@p.Id</th>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Amount</td>
+                <td>
+                    <a class="btn btn-primary">Edit</a>
+                    <a class="btn btn-danger" onclick="return confirm('Are you sure')"
+                    asp-action="Delete" asp-route-id ="@p.Id">Delete</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
