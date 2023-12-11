@@ -28,7 +28,7 @@
                 <td>@p.Price</td>
                 <td>@p.Amount</td>
                 <td>
-                    <a class="btn btn-primary">Edit</a>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
                     <a class="btn btn-danger" onclick="return confirm('Are you sure')"
                     asp-action="Delete" asp-route-id ="@p.Id">Delete</a>
                 </td>

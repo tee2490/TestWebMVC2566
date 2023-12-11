@@ -8,5 +8,7 @@ namespace P03_CodeFirst.Services
         IEnumerable<Product> GetAll();
         Product GetById(int id);
         void Delete(Product product);
+        void Add(Product product);
+        void Update(Product product);
     }
 }
