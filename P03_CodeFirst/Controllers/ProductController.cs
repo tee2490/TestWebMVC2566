@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using P03_CodeFirst.Models;
 using P03_CodeFirst.Services;
 
 namespace P03_CodeFirst.Controllers
@@ -31,5 +32,18 @@ namespace P03_CodeFirst.Controllers
 
             return RedirectToAction("Index");
         }
+
+       
+        public IActionResult Create() 
+        { 
+            return View();
+        }
+
+        [HttpPost] //กด Submit ให้มาที่นี้
+        public IActionResult Create(Product product)
+        {
+            return View();
+        }
     }
 }
+
