@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P04_RelationDB.Data;
 
@@ -10,9 +11,11 @@ using P04_RelationDB.Data;
 namespace P04_RelationDB.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231214082904_FeatureToComponent")]
+    partial class FeatureToComponent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,46 +39,6 @@ namespace P04_RelationDB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("P04_RelationDB.Models.Component", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("FeatureId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FeatureId")
-                        .IsUnique();
-
-                    b.ToTable("Components");
-                });
-
-            modelBuilder.Entity("P04_RelationDB.Models.Feature", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Features");
                 });
 
             modelBuilder.Entity("P04_RelationDB.Models.Product", b =>
@@ -106,17 +69,6 @@ namespace P04_RelationDB.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("P04_RelationDB.Models.Component", b =>
-                {
-                    b.HasOne("P04_RelationDB.Models.Feature", "Feature")
-                        .WithOne("Component")
-                        .HasForeignKey("P04_RelationDB.Models.Component", "FeatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Feature");
-                });
-
             modelBuilder.Entity("P04_RelationDB.Models.Product", b =>
                 {
                     b.HasOne("P04_RelationDB.Models.Category", "Category")
@@ -126,12 +78,6 @@ namespace P04_RelationDB.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("P04_RelationDB.Models.Feature", b =>
-                {
-                    b.Navigation("Component")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
