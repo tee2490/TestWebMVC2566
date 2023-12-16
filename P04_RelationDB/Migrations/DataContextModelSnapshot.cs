@@ -61,6 +61,21 @@ namespace P04_RelationDB.Migrations
                     b.ToTable("Components");
                 });
 
+            modelBuilder.Entity("P04_RelationDB.Models.ComponentProduct", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "ComponentId");
+
+                    b.HasIndex("ComponentId");
+
+                    b.ToTable("ComponentProducts");
+                });
+
             modelBuilder.Entity("P04_RelationDB.Models.Feature", b =>
                 {
                     b.Property<int>("Id")
@@ -115,6 +130,25 @@ namespace P04_RelationDB.Migrations
                         .IsRequired();
 
                     b.Navigation("Feature");
+                });
+
+            modelBuilder.Entity("P04_RelationDB.Models.ComponentProduct", b =>
+                {
+                    b.HasOne("P04_RelationDB.Models.Component", "Component")
+                        .WithMany()
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("P04_RelationDB.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("P04_RelationDB.Models.Product", b =>
