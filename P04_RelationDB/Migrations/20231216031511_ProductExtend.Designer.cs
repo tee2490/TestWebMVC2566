@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P04_RelationDB.Data;
 
@@ -11,9 +12,11 @@ using P04_RelationDB.Data;
 namespace P04_RelationDB.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231216031511_ProductExtend")]
+    partial class ProductExtend
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,30 +162,7 @@ namespace P04_RelationDB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("P04_RelationDB.Models.ProductExtend", "ProductExtend", b1 =>
-                        {
-                            b1.Property<int>("ComponentId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("Color")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<double>("Weight")
-                                .HasColumnType("float");
-
-                            b1.HasKey("ComponentId");
-
-                            b1.ToTable("Components");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ComponentId");
-                        });
-
                     b.Navigation("Feature");
-
-                    b.Navigation("ProductExtend")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("P04_RelationDB.Models.ComponentProduct", b =>

@@ -28,6 +28,7 @@ namespace P04_RelationDB.Data
         public DbSet<Component> Components { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<ComponentProduct> ComponentProducts { get; set; }
+        public DbSet<ProductDetail> ProductDetail { get; set; }
 
     }
 }
