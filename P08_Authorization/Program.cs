@@ -1,5 +1,5 @@
 global using P08_Authorization.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using P08_Authorization.Data;
 using P08_Authorization.Services;
