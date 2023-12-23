@@ -112,11 +112,28 @@ namespace P08_Authorization.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
             #endregion
+
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            #region MyRegion ใส่เพิ่มเข้าไปเอง
+
+            if (User.Identity.IsAuthenticated) Response.Redirect("/");
+
+            //ตัวเลือกบทบาทแบบรายการ อ่านมาจากฐานข้อมูล
+            Input = new InputModel
+            {
+                RoleList = _roleManager.Roles.Select(x => x.Name).Select(name => new SelectListItem
+                {
+                    Text = name,
+                    Value = name
+                })
+            };
+            #endregion
+
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
