@@ -1,6 +1,8 @@
 global using P08_Authorization.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using P08_Authorization.Data;
+using P08_Authorization.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("AuthorizationContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthorizationContextConnection' not found.");
@@ -14,10 +16,12 @@ builder.Services.AddDefaultIdentity<MyUser>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
-}).AddEntityFrameworkStores<AuthorizationContext>();
+}).AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AuthorizationContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 var app = builder.Build();
 
